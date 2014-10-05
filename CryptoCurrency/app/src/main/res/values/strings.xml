@@ -6,4 +6,5 @@
     <string name="action_stop">Exit</string>
     <string name="action_refresh">Refresh</string>
 
+    <string name="additional_phase">Currency</string>
 </resources>

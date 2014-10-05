@@ -7,6 +7,11 @@
     android:layout_gravity="center_horizontal"
     tools:context=".LiveCardService">
 
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/chart"
+        android:visibility="invisible"/>
 
     <TextView
         android:id="@+id/cryptoName"
@@ -21,7 +26,7 @@
     <RelativeLayout
         android:id="@+id/left_site"
         android:layout_width="185dp"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/cryptoName">
         <TextView
             android:id="@+id/textTopLeft"
@@ -32,8 +37,8 @@
             android:textSize="18sp"
             android:text="Last 24h"/>
         <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginTop="10dp"
             android:id="@+id/arrowLeft"
             android:src="@drawable/arrow_down_colour"
@@ -58,12 +63,13 @@
         android:layout_height="fill_parent"
         android:layout_below="@+id/cryptoName"
         android:layout_toRightOf="@+id/left_site"
+        android:layout_alignBottom="@+id/left_site"
         android:background="#fff" />
 
     <RelativeLayout
         android:id="@+id/right_site"
         android:layout_width="170dp"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/cryptoName"
         android:layout_toRightOf="@+id/separator">
         <TextView
@@ -72,12 +78,14 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentRight="true"
+            android:layout_marginLeft="10dp"
             android:textSize="18sp"
             android:text="Last update"/>
         <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
             android:id="@+id/arrowRight"
             android:src="@drawable/arrow_up_colour"
             android:layout_below="@+id/textTopRight"/>
@@ -94,5 +102,14 @@
             android:text="+XX%"/>
 
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/bottomPrice"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/separator"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:gravity="center_horizontal"/>
 
 </RelativeLayout>
