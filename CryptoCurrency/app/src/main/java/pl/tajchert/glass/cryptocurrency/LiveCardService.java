@@ -80,6 +80,7 @@ public class LiveCardService extends Service {
                 return null;
             }
             ticker = API.getTicker(params[0]);
+            API.getHistoricalData("PLN");
             return ticker;
         }
 
