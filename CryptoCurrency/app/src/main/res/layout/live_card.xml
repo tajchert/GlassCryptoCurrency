@@ -3,11 +3,96 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/card_margin"
+    android:gravity="center_horizontal"
+    android:layout_gravity="center_horizontal"
     tools:context=".LiveCardService">
 
+
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/cryptoName"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:gravity="center_horizontal"
+        android:text="BTC"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:textSize="35sp" />
+
+    <RelativeLayout
+        android:id="@+id/left_site"
+        android:layout_width="185dp"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/cryptoName">
+        <TextView
+            android:id="@+id/textTopLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:textSize="18sp"
+            android:text="Last 24h"/>
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/arrowLeft"
+            android:src="@drawable/arrow_down_colour"
+            android:layout_below="@+id/textTopLeft"/>
+        <TextView
+            android:id="@+id/textLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textTopLeft"
+            android:layout_toRightOf="@+id/arrowLeft"
+            android:layout_alignBottom="@+id/arrowLeft"
+            android:layout_alignParentRight="true"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:text="-XX%"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/separator"
+        android:layout_width="1dp"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/cryptoName"
+        android:layout_toRightOf="@+id/left_site"
+        android:background="#fff" />
+
+    <RelativeLayout
+        android:id="@+id/right_site"
+        android:layout_width="170dp"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/cryptoName"
+        android:layout_toRightOf="@+id/separator">
+        <TextView
+            android:id="@+id/textTopRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:textSize="18sp"
+            android:text="Last update"/>
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/arrowRight"
+            android:src="@drawable/arrow_up_colour"
+            android:layout_below="@+id/textTopRight"/>
+        <TextView
+            android:id="@+id/textRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textTopRight"
+            android:layout_toRightOf="@+id/arrowRight"
+            android:layout_alignBottom="@+id/arrowRight"
+            android:layout_alignParentRight="true"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:text="+XX%"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>
