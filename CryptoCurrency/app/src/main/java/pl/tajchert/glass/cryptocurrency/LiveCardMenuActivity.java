@@ -48,6 +48,12 @@ public class LiveCardMenuActivity extends Activity {
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        this.unbindService(mConnection);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_stop:
@@ -66,7 +72,9 @@ public class LiveCardMenuActivity extends Activity {
     }
 
     private void showChart() {
-
+        if(updateBinder != null) {
+            updateBinder.showChart();
+        }
     }
 
     @Override

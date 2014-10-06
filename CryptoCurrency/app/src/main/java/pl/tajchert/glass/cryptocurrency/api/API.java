@@ -130,6 +130,7 @@ public class API {
             URL url = new URL(API_HISTORY_24H_URL_BEGIN + currency + API_HISTORY_24H_URL_END);
             BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
             String line;
+            int counter = 0;
             String cvsSplitBy = ",";
             try {
                 while ((line = in.readLine()) != null) {
@@ -142,7 +143,13 @@ public class API {
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
-                        prices.put(result.getTime(), Double.parseDouble(data[1]));
+                        if(counter >= 3){
+                            counter = 0;
+                            prices.put(result.getTime(), Double.parseDouble(data[1]));
+                        } else {
+                            counter++;
+                        }
+
                     }
                 }
             } catch (FileNotFoundException e) {
