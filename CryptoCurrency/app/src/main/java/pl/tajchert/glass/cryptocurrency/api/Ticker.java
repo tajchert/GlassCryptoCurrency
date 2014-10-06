@@ -2,6 +2,8 @@ package pl.tajchert.glass.cryptocurrency.api;
 
 import com.google.gson.Gson;
 
+import java.util.Date;
+
 public class Ticker {
 
     private Double avgDay;
@@ -9,7 +11,16 @@ public class Ticker {
     private Double bid;
     private Double last;
     private String timestamp;
+    private Date date;
     private Double volumeBtc;
+
+    public Ticker() {
+    }
+
+    public Ticker(Double avgDay, Date date) {
+        this.avgDay = avgDay;
+        this.date = date;
+    }
 
     public Double getAvgDay() {
         return avgDay;
@@ -57,6 +68,14 @@ public class Ticker {
 
     public void setVolumeBtc(Double volumeBtc) {
         this.volumeBtc = volumeBtc;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public String toJSON(){

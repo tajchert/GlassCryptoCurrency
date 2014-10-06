@@ -5,6 +5,7 @@
     <string name="title_activity_live_card_service">Crypto Currency</string>
     <string name="action_stop">Exit</string>
     <string name="action_refresh">Refresh</string>
+    <string name="action_chart">Chart</string>
 
     <string name="additional_phase">Currency</string>
 </resources>

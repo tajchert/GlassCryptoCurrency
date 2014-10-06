@@ -16,6 +16,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TreeMap;
 
 
 public class API {
@@ -23,6 +29,10 @@ public class API {
     private static final String API_TICKERS_URL = "https://api.bitcoinaverage.com/ticker/global/";
     private static final String API_HISTORY_URL_BEGIN = "https://api.bitcoinaverage.com/history/";
     private static final String API_HISTORY_URL_END = "/per_hour_monthly_sliding_window.csv";
+    private static final String API_HISTORY_24H_URL_BEGIN = "https://api.bitcoinaverage.com/history/";
+    private static final String API_HISTORY_24H_URL_END = "/per_minute_24h_sliding_window.csv";
+
+    private TreeMap<Long, Double> tickerHistory = new TreeMap<Long, Double>();
 
 
     public static Ticker getTicker(String currency) {
@@ -67,16 +77,33 @@ public class API {
         return ticker;
     }
 
-    public static void getHistoricalData(String currency){
+    public void getHistoricalData(String currency){
         try {
             URL url = new URL(API_HISTORY_URL_BEGIN + currency + API_HISTORY_URL_END);
             BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
             String line;
             String cvsSplitBy = ",";
             try {
+                tickerHistory = new TreeMap<Long, Double>();
                 while ((line = in.readLine()) != null) {
                     String[] data = line.split(cvsSplitBy);
-                    Log.d(TAG, "Value [date= " + data[0] + " , val=" + data[1] + "]");
+                    if(data != null && data.length > 1 && !data[1].equals("0.0") && isNumeric(data[1])){
+                        DateFormat df = new SimpleDateFormat("yyyy-mm-dd kk:mm:ss", Locale.ENGLISH);//
+                        Date result = new Date();
+                        try {
+                            result =  df.parse(data[0]);
+                            result.setHours(0);
+                            result.setMinutes(0);
+                            result.setSeconds(0);
+
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        if(!tickerHistory.containsKey(result.getTime())){
+                            tickerHistory.put(result.getTime(),Double.parseDouble(data[1]));
+                        }
+                    }
+
                 }
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -97,5 +124,54 @@ public class API {
             Log.d(TAG, "getHistoricalData : " + e);
         }
     }
+    public TreeMap<Long, Double> getLast24H(String currency){
+        TreeMap<Long, Double> prices = new TreeMap<Long, Double>();
+        try {
+            URL url = new URL(API_HISTORY_24H_URL_BEGIN + currency + API_HISTORY_24H_URL_END);
+            BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
+            String line;
+            String cvsSplitBy = ",";
+            try {
+                while ((line = in.readLine()) != null) {
+                    String[] data = line.split(cvsSplitBy);
+                    if(data != null && data.length > 1 && !data[1].equals("0.0") && isNumeric(data[1])){
+                        DateFormat df = new SimpleDateFormat("yyyy-mm-dd kk:mm:ss", Locale.ENGLISH);//
+                        Date result = new Date();
+                        try {
+                            result =  df.parse(data[0]);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        prices.put(result.getTime(), Double.parseDouble(data[1]));
+                    }
+                }
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                if (in != null) {
+                    try {
+                        in.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        } catch (MalformedURLException e) {
+            Log.d(TAG, "getHistoricalData : " + e);
+        } catch (IOException e) {
+            Log.d(TAG, "getHistoricalData : " + e);
+        }
+        return prices;
+    }
 
+    public static boolean isNumeric(String str) {
+        try {
+            double d = Double.parseDouble(str);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
 }

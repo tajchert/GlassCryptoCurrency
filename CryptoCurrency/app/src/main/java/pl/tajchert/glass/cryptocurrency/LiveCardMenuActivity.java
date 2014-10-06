@@ -57,9 +57,16 @@ public class LiveCardMenuActivity extends Activity {
             case R.id.action_refresh:
                 updateLiveCard();
                 return true;
+            case R.id.action_chart:
+                showChart();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void showChart() {
+
     }
 
     @Override
