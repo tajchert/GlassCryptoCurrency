@@ -1,4 +1,4 @@
-package pl.tajchert.glass.cryptocurrency.utils;
+package pl.tajchert.glass.bitcointicker.utils;
 
 
 import android.content.Context;

@@ -1,4 +1,4 @@
-package pl.tajchert.glass.cryptocurrency;
+package pl.tajchert.glass.bitcointicker;
 
 import android.app.PendingIntent;
 import android.app.Service;
@@ -31,9 +31,9 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
-import pl.tajchert.glass.cryptocurrency.api.API;
-import pl.tajchert.glass.cryptocurrency.api.Ticker;
-import pl.tajchert.glass.cryptocurrency.utils.Tools;
+import pl.tajchert.glass.bitcointicker.api.API;
+import pl.tajchert.glass.bitcointicker.api.Ticker;
+import pl.tajchert.glass.bitcointicker.utils.Tools;
 
 /**
  * A {@link Service} that publishes a {@link LiveCard} in the timeline.

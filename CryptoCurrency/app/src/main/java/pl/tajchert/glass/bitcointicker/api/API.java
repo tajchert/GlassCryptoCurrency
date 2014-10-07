@@ -1,4 +1,4 @@
-package pl.tajchert.glass.cryptocurrency.api;
+package pl.tajchert.glass.bitcointicker.api;
 
 import android.util.Log;
 
