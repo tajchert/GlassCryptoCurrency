@@ -128,5 +128,16 @@
         android:textSize="30sp"
         android:textStyle="bold"
         android:gravity="right"/>
+    <TextView
+        android:id="@+id/noInternetConnection"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:text="No Internet Connection."
+        android:background="@android:color/background_dark"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        android:gravity="center"/>
+
 
 </RelativeLayout>

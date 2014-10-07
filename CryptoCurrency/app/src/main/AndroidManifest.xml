@@ -3,6 +3,7 @@
     package="pl.tajchert.glass.cryptocurrency" >
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -11,7 +12,7 @@
         android:theme="@style/AppTheme" >
         <service
             android:name="pl.tajchert.glass.cryptocurrency.LiveCardService"
-            android:icon="@drawable/ic_glass_logo"
+            android:icon="@drawable/ic_launcher_bitcoin"
             android:label="@string/title_activity_live_card_service" >
             <intent-filter>
                 <action android:name="com.google.android.glass.action.VOICE_TRIGGER" />

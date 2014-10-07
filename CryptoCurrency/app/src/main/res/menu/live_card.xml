@@ -10,5 +10,5 @@
     <item
         android:id="@+id/action_chart"
         android:title="@string/action_chart"
-        android:icon="@drawable/ic_stop" />
+        android:icon="@drawable/ic_chart" />
 </menu>

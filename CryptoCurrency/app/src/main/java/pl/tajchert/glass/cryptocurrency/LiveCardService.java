@@ -73,12 +73,19 @@ public class LiveCardService extends Service {
             remoteViews = new RemoteViews(getPackageName(), R.layout.live_card);
             currency = "USD";
             if(voiceResults.size() == 1 && voiceResults.get(0).length() == 3){
-                currency = voiceResults.get(0);
-                //TODO check some list
+                if(Tools.isOnList(voiceResults.get(0))){
+                    currency = voiceResults.get(0);
+                }
             }
             cleanPrefs(currency);
             remoteViews.setTextViewText(R.id.cryptoName, "BTC - "+ currency);
-            updateData(currency);
+            if(Tools.isNetworkAvailable(this)){
+                remoteViews.setViewVisibility(R.id.noInternetConnection, View.INVISIBLE);
+                updateData(currency);
+            } else {
+                remoteViews.setViewVisibility(R.id.noInternetConnection, View.VISIBLE);
+            }
+
             mLiveCard.setViews(remoteViews);
 
             // Display the options menu when the live card is tapped.
