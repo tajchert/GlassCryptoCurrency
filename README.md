@@ -1,4 +1,4 @@
-GlassCryptoCurrency
+Bitcoin Ticker for Google Glass
 ===================
 
 A Bitcoin ticker app that uses api.bitcoinaverage.com for data gathering.
