@@ -23,7 +23,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
@@ -33,7 +32,6 @@ import com.google.android.glass.media.Sounds;
 import com.google.android.glass.touchpad.Gesture;
 import com.google.android.glass.touchpad.GestureDetector;
 import com.google.android.glass.touchpad.GestureDetector.BaseListener;
-import com.google.android.glass.touchpad.GestureDetector.ScrollListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -43,7 +41,7 @@ import pl.tajchert.glass.bitcointicker.utils.Tools;
 /**
  * Activity to set the timer.
  */
-public class SetCurrencyActivity extends Activity implements BaseListener, ScrollListener{
+public class SetCurrencyActivity extends Activity implements BaseListener{
     private static final String TAG = "SetCurrencyActivity";
     private static final float MAX_DRAG_VELOCITY = 1;
 
@@ -69,8 +67,7 @@ public class SetCurrencyActivity extends Activity implements BaseListener, Scrol
         currencies = Tools.getCurrencyList();
 
         mDetector = new GestureDetector(this)
-                .setBaseListener(this)
-                .setScrollListener(this);
+                .setBaseListener(this);
 
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
@@ -108,12 +105,6 @@ public class SetCurrencyActivity extends Activity implements BaseListener, Scrol
     public boolean onGenericMotionEvent(MotionEvent event) {
         return mDetector.onMotionEvent(event);
     }
-    @Override
-    public boolean onScroll(float displacement, float delta, float velocity) {
-        touchTime = Calendar.getInstance().getTimeInMillis();
-        addFlingValue(Math.min(velocity, MAX_DRAG_VELOCITY));
-        return true;
-    }
 
     @Override
     public boolean onGesture(Gesture gesture) {
@@ -133,6 +124,12 @@ public class SetCurrencyActivity extends Activity implements BaseListener, Scrol
                 forceEndAnimation();
                 finish();
                 return true;
+            case SWIPE_LEFT:
+                setNewPosition(position - 1);
+                return true;
+            case SWIPE_RIGHT:
+                setNewPosition(position + 1);
+                return true;
             default:
                 return false;
         }
@@ -145,17 +142,12 @@ public class SetCurrencyActivity extends Activity implements BaseListener, Scrol
         startService(tickerIntent);
     }
 
-    private void addFlingValue(float delta) {
-        setNewPosition(Math.round(position + delta));
-    }
-
     private void setNewPosition(int newPosition) {
         int prevPosition = position;
 
         newPosition = checkNewPositionNumber(newPosition);
 
         if(newPosition != prevPosition){
-            Log.d(TAG, "setNewPosition position change");
             position = newPosition;
             playSoundEffect(Sounds.TAP);
             updateText();

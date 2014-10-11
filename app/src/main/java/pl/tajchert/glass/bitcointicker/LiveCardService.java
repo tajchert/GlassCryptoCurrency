@@ -13,6 +13,7 @@ import android.os.AsyncTask;
 import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.RemoteViews;
 
@@ -181,7 +182,17 @@ public class LiveCardService extends Service {
                 Double prevVal = Double.parseDouble(prefs.getString(Tools.KEY_PREFS_LAST_VALUE, "0"));
                 prefs.edit().putString(Tools.KEY_PREFS_LAST_VALUE, result.getLast().toString()).apply();
                 if (mLiveCard != null && remoteViews != null) {
-                    remoteViews.setTextViewText(R.id.bottomPrice, result.getLast() + "");
+                    remoteViews.setTextViewText(R.id.bottomPrice, result.getLast().toString());//result.getLast() +
+                    if(result.getLast().toString().length() >= 8){
+                        remoteViews.setTextViewTextSize(R.id.bottomPrice,  TypedValue.COMPLEX_UNIT_SP, 55);
+                    }
+                    if(result.getLast().toString().length() >= 10){
+                        remoteViews.setTextViewTextSize(R.id.bottomPrice,  TypedValue.COMPLEX_UNIT_SP, 50);
+                    }
+                    if(result.getLast().toString().length() >= 12){
+                        remoteViews.setTextViewTextSize(R.id.bottomPrice,  TypedValue.COMPLEX_UNIT_SP, 40);
+                    }
+                    //
                     if(prevVal != 0) {
                         double percentRight = round((((result.getLast() - prevVal) / prevVal) * 100), 1);
                         if(percentRight > 0 ){
