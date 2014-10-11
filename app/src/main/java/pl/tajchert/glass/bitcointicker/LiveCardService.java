@@ -13,6 +13,7 @@ import android.os.AsyncTask;
 import android.os.Binder;
 import android.os.IBinder;
 import android.speech.RecognizerIntent;
+import android.util.Log;
 import android.view.View;
 import android.widget.RemoteViews;
 
@@ -29,6 +30,7 @@ import org.achartengine.renderer.XYSeriesRenderer;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -40,7 +42,7 @@ import pl.tajchert.glass.bitcointicker.utils.Tools;
  * A {@link Service} that publishes a {@link LiveCard} in the timeline.
  */
 public class LiveCardService extends Service {
-    private static final String LIVE_CARD_TAG = "LiveCardService";
+    private static final String TAG = "LiveCardService";
 
     private final UpdateBinder mBinder = new UpdateBinder();
     private LiveCard mLiveCard;
@@ -69,7 +71,7 @@ public class LiveCardService extends Service {
             voiceResults = new ArrayList<String>();
         }
         if (mLiveCard == null) {
-            mLiveCard = new LiveCard(this, LIVE_CARD_TAG);
+            mLiveCard = new LiveCard(this, TAG);
 
             remoteViews = new RemoteViews(getPackageName(), R.layout.live_card);
             currency = "USD";
@@ -91,21 +93,39 @@ public class LiveCardService extends Service {
 
             // Display the options menu when the live card is tapped.
             Intent menuIntent = new Intent(this, LiveCardMenuActivity.class);
+            if(mLiveCard.isPublished()){
+                mLiveCard.unpublish();
+            }
             mLiveCard.setAction(PendingIntent.getActivity(this, 0, menuIntent, 0));
             mLiveCard.publish(PublishMode.REVEAL);
         } else {
             mLiveCard.navigate();
         }
+        scheduleUpdate();
         return START_STICKY;
     }
 
     private void scheduleUpdate(){
+        Intent intent = new Intent(LiveCardService.this, LiveCardService.class);
+        PendingIntent serviceIntent = PendingIntent.getService(LiveCardService.this, 0, intent, 0);
         AlarmManager alarm_manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        alarm_manager.setRepeating(AlarmManager.RTC, cur_cal.getTimeInMillis(), 180000,  pi);
+        alarm_manager.setRepeating(AlarmManager.RTC, Calendar.getInstance().getTimeInMillis(), 900000,  serviceIntent);
+    }
+
+    private void cancelUpdate(){
+        AlarmManager alarmManager = (AlarmManager) LiveCardService.this.getSystemService(Context.ALARM_SERVICE);
+        Intent updateServiceIntent = new Intent(LiveCardService.this, LiveCardService.class);
+        PendingIntent pendingUpdateIntent = PendingIntent.getService(LiveCardService.this, 0, updateServiceIntent, 0);
+        try {
+            alarmManager.cancel(pendingUpdateIntent);
+        } catch (Exception e) {
+            Log.e(TAG, "AlarmManager update was not canceled. " + e.toString());
+        }
     }
 
     @Override
     public void onDestroy() {
+        cancelUpdate();
         if (mLiveCard != null && mLiveCard.isPublished()) {
             mLiveCard.unpublish();
             mLiveCard = null;
@@ -152,29 +172,22 @@ public class LiveCardService extends Service {
             if(result != null) {
                 Double prevVal = Double.parseDouble(prefs.getString(Tools.KEY_PREFS_LAST_VALUE, "0"));
                 prefs.edit().putString(Tools.KEY_PREFS_LAST_VALUE, result.getLast().toString()).apply();
-
                 if (mLiveCard != null && remoteViews != null) {
                     remoteViews.setTextViewText(R.id.bottomPrice, result.getLast() + " " + currency);
                     if(prevVal != 0) {
-                        remoteViews.setViewVisibility(R.id.arrowRight, View.VISIBLE);
-                        remoteViews.setViewVisibility(R.id.textTopRight, View.VISIBLE);
-                        remoteViews.setViewVisibility(R.id.separator, View.VISIBLE);
                         double percentRight = round((((result.getLast() - prevVal) / prevVal) * 100), 1);
                         if(percentRight > 0 ){
-                            remoteViews.setTextViewText(R.id.textRight, "+" + percentRight + "%");
-                            remoteViews.setImageViewResource(R.id.arrowRight, R.drawable.arrow_up_colour);
+                            remoteViews.setTextViewText(R.id.textUpdate, "(+" + percentRight + "%)");
+                            remoteViews.setTextColor(R.id.textUpdate, Color.GREEN);
                         } else if(percentRight == 0) {
-                            remoteViews.setTextViewText(R.id.textRight, "0%");
-                            remoteViews.setImageViewResource(R.id.arrowRight, R.drawable.no_change_regular_white);
+                            remoteViews.setTextViewText(R.id.textUpdate, "(0%)");
+                            remoteViews.setTextColor(R.id.textUpdate, Color.WHITE);
                         } else {
-                            remoteViews.setTextViewText(R.id.textRight, percentRight + "%");
-                            remoteViews.setImageViewResource(R.id.arrowRight, R.drawable.arrow_down_colour);
+                            remoteViews.setTextViewText(R.id.textUpdate, "(" + percentRight + "%)");
+                            remoteViews.setTextColor(R.id.textUpdate, Color.RED);
                         }
                     } else {
-                        remoteViews.setTextViewText(R.id.textRight, "");
-                        remoteViews.setViewVisibility(R.id.arrowRight, View.INVISIBLE);
-                        remoteViews.setViewVisibility(R.id.textTopRight, View.INVISIBLE);
-                        remoteViews.setViewVisibility(R.id.separator, View.INVISIBLE);
+                        remoteViews.setTextViewText(R.id.textUpdate, "");
                     }
                     Double prevDayVal;
                     if(lastDayPrices != null && lastDayPrices.size() > 0){
@@ -182,18 +195,18 @@ public class LiveCardService extends Service {
 
                         double percentLeft = round((((result.getLast() - prevDayVal) / prevDayVal) * 100), 1);
                         if(percentLeft > 0 ){
-                            remoteViews.setTextViewText(R.id.textLeft, "+" + percentLeft + "%");
-                            remoteViews.setImageViewResource(R.id.arrowLeft, R.drawable.arrow_up_colour);
+                            remoteViews.setTextViewText(R.id.textDay, "+" + percentLeft + "%");
+                            remoteViews.setTextColor(R.id.textDay, Color.GREEN);
                         } else if(percentLeft == 0){
-                            remoteViews.setTextViewText(R.id.textLeft, "0%");
-                            remoteViews.setImageViewResource(R.id.arrowLeft, R.drawable.no_change_regular_white);
+                            remoteViews.setTextViewText(R.id.textDay, "0%");
+                            remoteViews.setTextColor(R.id.textDay, Color.WHITE);
                         } else {
-                            remoteViews.setTextViewText(R.id.textLeft, percentLeft + "%");
-                            remoteViews.setImageViewResource(R.id.arrowLeft, R.drawable.arrow_down_colour);
+                            remoteViews.setTextViewText(R.id.textDay, percentLeft + "%");
+                            remoteViews.setTextColor(R.id.textDay, Color.RED);
                         }
                     } else {
-                        remoteViews.setTextViewText(R.id.textLeft, "0%");
-                        remoteViews.setImageViewResource(R.id.arrowLeft, R.drawable.no_change_regular_white);
+                        remoteViews.setTextViewText(R.id.textDay, "0%");
+                        remoteViews.setTextColor(R.id.textDay, Color.WHITE);
                     }
                     mLiveCard.setViews(remoteViews);
                     new GetChartData().execute(currency);
