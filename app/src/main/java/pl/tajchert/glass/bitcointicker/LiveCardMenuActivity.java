@@ -15,7 +15,6 @@ import android.view.MenuItem;
 public class LiveCardMenuActivity extends Activity {
     private Menu menu;
     private LiveCardService.UpdateBinder updateBinder;
-    private boolean isChart = false;
     private ServiceConnection mConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
@@ -56,15 +55,21 @@ public class LiveCardMenuActivity extends Activity {
         this.unbindService(mConnection);
     }
 
-    private void updateMenuTitle() {
-        MenuItem chartMenuItem = menu.findItem(R.id.action_chart);
-        if (isChart) {
+    private void updateMenuTitle( MenuItem chartMenuItem) {
+        if (BitcoinTicker.isChartVisible) {
             chartMenuItem.setTitle("View rate");
             chartMenuItem.setIcon(R.drawable.ic_rate);
         } else {
             chartMenuItem.setTitle("View chart");
             chartMenuItem.setIcon(R.drawable.ic_chart);
         }
+    }
+
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        if(menu != null){
+            updateMenuTitle(menu.findItem(R.id.action_chart));
+        }
+        return true;
     }
 
     @Override
@@ -78,13 +83,12 @@ public class LiveCardMenuActivity extends Activity {
                 updateLiveCard();
                 return true;
             case R.id.action_chart:
-                showChart();
-                if(isChart == false) {
-                    isChart = true;
+                if(BitcoinTicker.isChartVisible == false) {
+                    BitcoinTicker.isChartVisible = true;
                 } else {
-                    isChart = false;
+                    BitcoinTicker.isChartVisible = false;
                 }
-                updateMenuTitle();
+                showChart();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

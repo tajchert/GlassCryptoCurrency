@@ -75,7 +75,7 @@ public class LiveCardService extends Service {
 
             remoteViews = new RemoteViews(getPackageName(), R.layout.live_card);
             currency = "USD";
-            if(voiceResults.size() == 1 && voiceResults.get(0).length() == 3){
+            if(voiceResults != null && voiceResults.size() == 1 && voiceResults.get(0).length() == 3){
                 if(Tools.isOnList(voiceResults.get(0))){
                     currency = voiceResults.get(0);
                 }
@@ -173,7 +173,7 @@ public class LiveCardService extends Service {
                 Double prevVal = Double.parseDouble(prefs.getString(Tools.KEY_PREFS_LAST_VALUE, "0"));
                 prefs.edit().putString(Tools.KEY_PREFS_LAST_VALUE, result.getLast().toString()).apply();
                 if (mLiveCard != null && remoteViews != null) {
-                    remoteViews.setTextViewText(R.id.bottomPrice, result.getLast() + " " + currency);
+                    remoteViews.setTextViewText(R.id.bottomPrice, result.getLast() + "");
                     if(prevVal != 0) {
                         double percentRight = round((((result.getLast() - prevVal) / prevVal) * 100), 1);
                         if(percentRight > 0 ){
@@ -205,7 +205,6 @@ public class LiveCardService extends Service {
                             remoteViews.setTextColor(R.id.textDay, Color.RED);
                         }
                     } else {
-                        remoteViews.setTextViewText(R.id.textDay, "0%");
                         remoteViews.setTextColor(R.id.textDay, Color.WHITE);
                     }
                     mLiveCard.setViews(remoteViews);
@@ -256,7 +255,7 @@ public class LiveCardService extends Service {
         mRenderer.setYAxisMin(min);
         mRenderer.setYTitle(currency + "");
         mRenderer.setXTitle("Time");
-        mRenderer.addXTextLabel(maxDate, ((int) Math.round(max)) + " " + currency);//TODO format
+        mRenderer.addYTextLabel(max, ((int) Math.round(max)) + " " + currency);//TODO format
         mRenderer.setShowGrid(false);
         mRenderer.setXLabels(0);
         mRenderer.setYLabels(0);
