@@ -49,6 +49,7 @@ public class LiveCardService extends Service {
     private String currency;
     private Ticker ticker;
     private RemoteViews remoteViews;
+    private boolean isAlarmUp = false;
 
     private boolean chartVisible = false;
     private Bitmap bitmap;
@@ -70,28 +71,18 @@ public class LiveCardService extends Service {
         } catch (Exception e) {
             voiceResults = new ArrayList<String>();
         }
+        currency = "USD";
+        if(voiceResults != null && voiceResults.size() == 1 && voiceResults.get(0).length() == 3){
+            if(Tools.isOnList(voiceResults.get(0))){
+                currency = voiceResults.get(0);
+            }
+        }
+        cleanPrefs(currency);
+
         if (mLiveCard == null) {
             mLiveCard = new LiveCard(this, TAG);
-
             remoteViews = new RemoteViews(getPackageName(), R.layout.live_card);
-            currency = "USD";
-            if(voiceResults != null && voiceResults.size() == 1 && voiceResults.get(0).length() == 3){
-                if(Tools.isOnList(voiceResults.get(0))){
-                    currency = voiceResults.get(0);
-                }
-            }
-            cleanPrefs(currency);
-            remoteViews.setTextViewText(R.id.cryptoName, "BTC - "+ currency);
-            if(Tools.isNetworkAvailable(this)){
-                remoteViews.setViewVisibility(R.id.noInternetConnection, View.INVISIBLE);
-                updateData(currency);
-            } else {
-                remoteViews.setViewVisibility(R.id.noInternetConnection, View.VISIBLE);
-            }
 
-            mLiveCard.setViews(remoteViews);
-
-            // Display the options menu when the live card is tapped.
             Intent menuIntent = new Intent(this, LiveCardMenuActivity.class);
             if(mLiveCard.isPublished()){
                 mLiveCard.unpublish();
@@ -100,19 +91,43 @@ public class LiveCardService extends Service {
             mLiveCard.publish(PublishMode.REVEAL);
         } else {
             mLiveCard.navigate();
+            if(remoteViews == null) {
+                remoteViews = new RemoteViews(getPackageName(), R.layout.live_card);
+            }
         }
-        scheduleUpdate();
+        remoteViews.setTextViewText(R.id.cryptoName, "BTC - "+ currency);
+        if(Tools.isNetworkAvailable(this)){
+            remoteViews.setViewVisibility(R.id.noInternetConnection, View.INVISIBLE);
+            updateData(currency);
+        } else {
+            remoteViews.setViewVisibility(R.id.noInternetConnection, View.VISIBLE);
+        }
+        mLiveCard.setViews(remoteViews);
+        if(!isAlarmUp){
+            cancelUpdate();
+            scheduleUpdate();
+        }
         return START_STICKY;
     }
 
+    private boolean isAlarmSet(){
+        boolean alarmUp = (PendingIntent.getBroadcast(LiveCardService.this, 0,
+                new Intent(LiveCardService.this, LiveCardService.class),
+                PendingIntent.FLAG_NO_CREATE) != null);
+        Log.d(TAG, "isAlarmSet :" + alarmUp);
+        return alarmUp;
+    }
+
     private void scheduleUpdate(){
+        isAlarmUp = true;
         Intent intent = new Intent(LiveCardService.this, LiveCardService.class);
         PendingIntent serviceIntent = PendingIntent.getService(LiveCardService.this, 0, intent, 0);
         AlarmManager alarm_manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        alarm_manager.setRepeating(AlarmManager.RTC, Calendar.getInstance().getTimeInMillis(), 900000,  serviceIntent);
+        alarm_manager.setRepeating(AlarmManager.RTC, Calendar.getInstance().getTimeInMillis(), 30000,  serviceIntent);
     }
 
     private void cancelUpdate(){
+        isAlarmUp = false;
         AlarmManager alarmManager = (AlarmManager) LiveCardService.this.getSystemService(Context.ALARM_SERVICE);
         Intent updateServiceIntent = new Intent(LiveCardService.this, LiveCardService.class);
         PendingIntent pendingUpdateIntent = PendingIntent.getService(LiveCardService.this, 0, updateServiceIntent, 0);
@@ -176,6 +191,7 @@ public class LiveCardService extends Service {
                     remoteViews.setTextViewText(R.id.bottomPrice, result.getLast() + "");
                     if(prevVal != 0) {
                         double percentRight = round((((result.getLast() - prevVal) / prevVal) * 100), 1);
+                        Log.d(TAG, "onPostExecute current: " + result.getLast() +", prev: " + prevVal + ", %: " + percentRight);
                         if(percentRight > 0 ){
                             remoteViews.setTextViewText(R.id.textUpdate, "(+" + percentRight + "%)");
                             remoteViews.setTextColor(R.id.textUpdate, Color.GREEN);
@@ -194,18 +210,28 @@ public class LiveCardService extends Service {
                         prevDayVal = lastDayPrices.firstEntry().getValue();
 
                         double percentLeft = round((((result.getLast() - prevDayVal) / prevDayVal) * 100), 1);
+                        Log.d(TAG, "onPostExecute current: " + result.getLast() +", prev: " + prevDayVal + ", %: " + percentLeft);
                         if(percentLeft > 0 ){
                             remoteViews.setTextViewText(R.id.textDay, "+" + percentLeft + "%");
+                            remoteViews.setTextViewText(R.id.chartChange, "+" + percentLeft + "%");
+                            remoteViews.setTextColor(R.id.chartChange, Color.GREEN);
                             remoteViews.setTextColor(R.id.textDay, Color.GREEN);
                         } else if(percentLeft == 0){
                             remoteViews.setTextViewText(R.id.textDay, "0%");
+                            remoteViews.setTextViewText(R.id.chartChange, "0%");
+                            remoteViews.setTextColor(R.id.chartChange, Color.WHITE);
                             remoteViews.setTextColor(R.id.textDay, Color.WHITE);
                         } else {
                             remoteViews.setTextViewText(R.id.textDay, percentLeft + "%");
                             remoteViews.setTextColor(R.id.textDay, Color.RED);
+                            remoteViews.setTextViewText(R.id.chartChange, percentLeft + "%");
+                            remoteViews.setTextColor(R.id.chartChange, Color.RED);
                         }
                     } else {
                         remoteViews.setTextColor(R.id.textDay, Color.WHITE);
+                        remoteViews.setTextViewText(R.id.textDay, "");
+                        remoteViews.setTextColor(R.id.chartChange, Color.WHITE);
+                        remoteViews.setTextViewText(R.id.chartChange, "");
                     }
                     mLiveCard.setViews(remoteViews);
                     new GetChartData().execute(currency);
@@ -217,12 +243,10 @@ public class LiveCardService extends Service {
     public void chartChangeVisibility(){
         if(remoteViews != null && mLiveCard != null){
             if(chartVisible){
-                remoteViews.setViewVisibility(R.id.chartTitle, View.INVISIBLE);
-                remoteViews.setViewVisibility(R.id.chart, View.INVISIBLE);
+                remoteViews.setViewVisibility(R.id.chartLayout, View.INVISIBLE);
                 chartVisible = false;
             } else {
-                remoteViews.setViewVisibility(R.id.chartTitle, View.VISIBLE);
-                remoteViews.setViewVisibility(R.id.chart, View.VISIBLE);
+                remoteViews.setViewVisibility(R.id.chartLayout, View.VISIBLE);
                 chartVisible = true;
             }
             mLiveCard.setViews(remoteViews);
@@ -280,6 +304,7 @@ public class LiveCardService extends Service {
             prefs.edit().putString(Tools.KEY_PREFS_LAST_VALUE, "0").apply();
             lastDayPrices = new TreeMap<Long, Double>();
             prefs.edit().putString(Tools.KEY_PREFS_LAST_CURRENCY, newCurrency).apply();
+            cancelUpdate();
         }
     }
 
