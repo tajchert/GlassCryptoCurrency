@@ -1,5 +1,6 @@
 package pl.tajchert.glass.bitcointicker;
 
+import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
@@ -96,6 +97,11 @@ public class LiveCardService extends Service {
             mLiveCard.navigate();
         }
         return START_STICKY;
+    }
+
+    private void scheduleUpdate(){
+        AlarmManager alarm_manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        alarm_manager.setRepeating(AlarmManager.RTC, cur_cal.getTimeInMillis(), 180000,  pi);
     }
 
     @Override
@@ -215,12 +221,16 @@ public class LiveCardService extends Service {
         XYSeries series = new XYSeries("");
         Double min = Double.MAX_VALUE;
         Double max = 0d;
+        Long maxDate = 0l;
+        Long minDate = 0l;
         for(Map.Entry<Long, Double> entry : prices.entrySet()) {
             series.add(entry.getKey(), entry.getValue());
             if(entry.getValue() > max){
                 max = entry.getValue();
+                maxDate = entry.getKey();
             } else if (entry.getValue() < min){
                 min = entry.getValue();
+                minDate = entry.getKey();
             }
         }
         XYSeriesRenderer renderer = new XYSeriesRenderer();
@@ -231,6 +241,9 @@ public class LiveCardService extends Service {
         mRenderer.setPanEnabled(false, false);
         mRenderer.setYAxisMax(max);
         mRenderer.setYAxisMin(min);
+        mRenderer.setYTitle(currency + "");
+        mRenderer.setXTitle("Time");
+        mRenderer.addXTextLabel(maxDate, ((int) Math.round(max)) + " " + currency);//TODO format
         mRenderer.setShowGrid(false);
         mRenderer.setXLabels(0);
         mRenderer.setYLabels(0);

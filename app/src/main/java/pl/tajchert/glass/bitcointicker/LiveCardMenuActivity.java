@@ -13,7 +13,9 @@ import android.view.MenuItem;
  * A transparent {@link Activity} displaying a "Stop" options menu to remove the {@link LiveCard}.
  */
 public class LiveCardMenuActivity extends Activity {
+    private Menu menu;
     private LiveCardService.UpdateBinder updateBinder;
+    private boolean isChart = false;
     private ServiceConnection mConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
@@ -44,6 +46,7 @@ public class LiveCardMenuActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.live_card, menu);
+        this.menu = menu;
         return true;
     }
 
@@ -51,6 +54,17 @@ public class LiveCardMenuActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
         this.unbindService(mConnection);
+    }
+
+    private void updateMenuTitle() {
+        MenuItem chartMenuItem = menu.findItem(R.id.action_chart);
+        if (isChart) {
+            chartMenuItem.setTitle("View rate");
+            chartMenuItem.setIcon(R.drawable.ic_rate);
+        } else {
+            chartMenuItem.setTitle("View chart");
+            chartMenuItem.setIcon(R.drawable.ic_chart);
+        }
     }
 
     @Override
@@ -65,6 +79,12 @@ public class LiveCardMenuActivity extends Activity {
                 return true;
             case R.id.action_chart:
                 showChart();
+                if(isChart == false) {
+                    isChart = true;
+                } else {
+                    isChart = false;
+                }
+                updateMenuTitle();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
