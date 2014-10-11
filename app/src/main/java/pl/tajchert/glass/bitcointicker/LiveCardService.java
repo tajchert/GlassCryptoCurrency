@@ -68,10 +68,12 @@ public class LiveCardService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         prefs = this.getSharedPreferences("pl.tajchert.glass.cryptocurrency", Context.MODE_PRIVATE);
         String action = intent.getAction();
-        if(action.equals(ACTION_START_KEY)){
+        if(action != null && action.equals(ACTION_START_KEY)){
             cancelUpdate();
             currencyPosition = intent.getIntExtra(CURRENCY_POSITION_KEY, 0);
             BitcoinTicker.currency = Tools.getCurrencyList().get(currencyPosition);
+        } else if (action == null){
+            //called by alarmManager
         }
         cleanPrefs(BitcoinTicker.currency);
 
@@ -102,7 +104,7 @@ public class LiveCardService extends Service {
             cancelUpdate();
             scheduleUpdate();
         }
-        if(action.equals(ACTION_START_KEY)){
+        if(action != null && action.equals(ACTION_START_KEY)){
             remoteViews.setViewVisibility(R.id.chartLayout, View.INVISIBLE);
             chartVisible = false;
             mLiveCard.navigate();
@@ -110,20 +112,12 @@ public class LiveCardService extends Service {
         return START_STICKY;
     }
 
-    private boolean isAlarmSet(){
-        boolean alarmUp = (PendingIntent.getBroadcast(LiveCardService.this, 0,
-                new Intent(LiveCardService.this, LiveCardService.class),
-                PendingIntent.FLAG_NO_CREATE) != null);
-        Log.d(TAG, "isAlarmSet :" + alarmUp);
-        return alarmUp;
-    }
-
     private void scheduleUpdate(){
         isAlarmUp = true;
         Intent intent = new Intent(LiveCardService.this, LiveCardService.class);
         PendingIntent serviceIntent = PendingIntent.getService(LiveCardService.this, 0, intent, 0);
         AlarmManager alarm_manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        alarm_manager.setRepeating(AlarmManager.RTC, Calendar.getInstance().getTimeInMillis(), 900000,  serviceIntent);//15 minutes
+        alarm_manager.setRepeating(AlarmManager.RTC, Calendar.getInstance().getTimeInMillis(), 60000,  serviceIntent);//15 minutes
     }
 
     private void cancelUpdate(){
@@ -177,7 +171,6 @@ public class LiveCardService extends Service {
             if(params[0] == null){
                 return null;
             }
-            API api = new API();
             ticker = API.getTicker(params[0]);
             return ticker;
         }
@@ -191,7 +184,6 @@ public class LiveCardService extends Service {
                     remoteViews.setTextViewText(R.id.bottomPrice, result.getLast() + "");
                     if(prevVal != 0) {
                         double percentRight = round((((result.getLast() - prevVal) / prevVal) * 100), 1);
-                        Log.d(TAG, "onPostExecute, currency: " + BitcoinTicker.currency + " current: " + result.getLast() +", prev: " + prevVal + ", %: " + percentRight);
                         if(percentRight > 0 ){
                             remoteViews.setTextViewText(R.id.textUpdate, "(+" + percentRight + "%)");
                             remoteViews.setTextColor(R.id.textUpdate, Color.GREEN);

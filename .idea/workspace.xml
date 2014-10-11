@@ -26,6 +26,7 @@
     </layouts>
   </component>
   <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="onPostExecute" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: pl.tajchert.glass.cryptocurrency" />
   </component>
   <component name="ChangeListManager">
@@ -54,8 +55,8 @@
       <file leaf-file-name="LiveCardService.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/pl/tajchert/glass/bitcointicker/LiveCardService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7823129" vertical-offset="2025" max-vertical-offset="4365">
-              <caret line="197" column="54" selection-start-line="197" selection-start-column="54" selection-end-line="197" selection-end-column="54" />
+            <state vertical-scroll-proportion="0.47619048" vertical-offset="240" max-vertical-offset="4245">
+              <caret line="67" column="29" selection-start-line="67" selection-start-column="15" selection-end-line="67" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -76,8 +77,8 @@
       <file leaf-file-name="SetCurrencyActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/pl/tajchert/glass/bitcointicker/SetCurrencyActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.6153846" vertical-offset="1466" max-vertical-offset="2550">
-              <caret line="143" column="65" selection-start-line="143" selection-start-column="65" selection-end-line="143" selection-end-column="65" />
+            <state vertical-scroll-proportion="-5.1153846" vertical-offset="2087" max-vertical-offset="2550">
+              <caret line="187" column="0" selection-start-line="187" selection-start-column="0" selection-end-line="187" selection-end-column="0" />
               <folding>
                 <element signature="e#2842#2898#0" expanded="true" />
                 <element signature="e#5023#5024#0" expanded="true" />
@@ -1565,27 +1566,16 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pl/tajchert/glass/bitcointicker/SetCurrencyActivity.java</url>
-          <line>187</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/pl/tajchert/glass/bitcointicker/LiveCardService.java</url>
+          <line>70</line>
           <properties />
-          <option name="timeStamp" value="46" />
+          <option name="timeStamp" value="47" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="47" />
+      <option name="time" value="48" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/live_card.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1965" max-vertical-offset="2235">
-          <caret line="131" column="45" selection-start-line="131" selection-start-column="25" selection-end-line="131" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="495" max-vertical-offset="630">
@@ -1969,18 +1959,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/pl/tajchert/glass/bitcointicker/SetCurrencyActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.6153846" vertical-offset="1466" max-vertical-offset="2550">
-          <caret line="143" column="65" selection-start-line="143" selection-start-column="65" selection-end-line="143" selection-end-column="65" />
-          <folding>
-            <element signature="e#2842#2898#0" expanded="true" />
-            <element signature="e#5023#5024#0" expanded="true" />
-            <element signature="e#5083#5084#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/pl/tajchert/glass/bitcointicker/BitcoinTicker.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="540">
@@ -1991,10 +1969,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/pl/tajchert/glass/bitcointicker/SetCurrencyActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.1153846" vertical-offset="2087" max-vertical-offset="2550">
+          <caret line="187" column="0" selection-start-line="187" selection-start-column="0" selection-end-line="187" selection-end-column="0" />
+          <folding>
+            <element signature="e#2842#2898#0" expanded="true" />
+            <element signature="e#5023#5024#0" expanded="true" />
+            <element signature="e#5083#5084#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/android-sdk/sources/android-19/android/app/ActivityThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.002342" vertical-offset="37598" max-vertical-offset="72855">
+          <caret line="2756" column="0" selection-start-line="2756" selection-start-column="0" selection-end-line="2756" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/pl/tajchert/glass/bitcointicker/LiveCardService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7823129" vertical-offset="2025" max-vertical-offset="4365">
-          <caret line="197" column="54" selection-start-line="197" selection-start-column="54" selection-end-line="197" selection-end-column="54" />
+        <state vertical-scroll-proportion="0.47619048" vertical-offset="240" max-vertical-offset="4245">
+          <caret line="67" column="29" selection-start-line="67" selection-start-column="15" selection-end-line="67" selection-end-column="29" />
           <folding />
         </state>
       </provider>
