@@ -12,15 +12,23 @@ public class Tools {
     public static final String KEY_PREFS_LAST_CURRENCY = "KEY_PREFS_LAST_CURRENCY";
 
     public static boolean isOnList(String currency){
+        ArrayList<String> currencies = getCurrencyList();
+        if(currencies.contains(currency)){
+            return true;
+        }
+        return false;
+    }
+
+    public static ArrayList<String> getCurrencyList(){
         ArrayList<String> currencies = new ArrayList<String>();
-        currencies.add("PLN");
         currencies.add("USD");
+        currencies.add("EUR");
         currencies.add("AUD");
         currencies.add("BRL");
         currencies.add("CAD");
         currencies.add("CHF");
         currencies.add("CNY");
-        currencies.add("EUR");
+        currencies.add("PLN");
         currencies.add("GBP");
         currencies.add("HKD");
         currencies.add("IDR");
@@ -33,11 +41,9 @@ public class Tools {
         currencies.add("SGD");
         currencies.add("TRY");
         currencies.add("ZAR");
-        if(currencies.contains(currency)){
-            return true;
-        }
-        return false;
+        return  currencies;
     }
+
     public static boolean isNetworkAvailable(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();

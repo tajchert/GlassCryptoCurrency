@@ -79,9 +79,6 @@ public class LiveCardMenuActivity extends Activity {
                 // Stop the service which will unpublish the live card.
                 stopService(new Intent(this, LiveCardService.class));
                 return true;
-            case R.id.action_refresh:
-                updateLiveCard();
-                return true;
             case R.id.action_chart:
                 if(BitcoinTicker.isChartVisible == false) {
                     BitcoinTicker.isChartVisible = true;

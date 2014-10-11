@@ -7,6 +7,7 @@ public class BitcoinTicker extends Application {
 
     private static BitcoinTicker singleton;
     public static boolean isChartVisible = false;
+    public static String currency = "USD";
 
     public BitcoinTicker getInstance(){
         return singleton;

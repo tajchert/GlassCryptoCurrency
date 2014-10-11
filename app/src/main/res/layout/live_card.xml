@@ -95,7 +95,7 @@
             android:ellipsize="end"
             android:gravity="bottom"
             android:singleLine="true"
-            android:text="now"
+            android:text=""
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <ImageView

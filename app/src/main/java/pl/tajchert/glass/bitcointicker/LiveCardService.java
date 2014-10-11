@@ -12,7 +12,6 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Binder;
 import android.os.IBinder;
-import android.speech.RecognizerIntent;
 import android.util.Log;
 import android.view.View;
 import android.widget.RemoteViews;
@@ -29,7 +28,7 @@ import org.achartengine.renderer.XYSeriesRenderer;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Map;
 import java.util.TreeMap;
@@ -44,9 +43,12 @@ import pl.tajchert.glass.bitcointicker.utils.Tools;
 public class LiveCardService extends Service {
     private static final String TAG = "LiveCardService";
 
+    public static final String CURRENCY_POSITION_KEY = "CURRENCY_POSITION_KEY";
+    public static final String ACTION_START_KEY = "ACTION_START_KEY";
+
     private final UpdateBinder mBinder = new UpdateBinder();
     private LiveCard mLiveCard;
-    private String currency;
+    private int currencyPosition;
     private Ticker ticker;
     private RemoteViews remoteViews;
     private boolean isAlarmUp = false;
@@ -65,19 +67,13 @@ public class LiveCardService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         prefs = this.getSharedPreferences("pl.tajchert.glass.cryptocurrency", Context.MODE_PRIVATE);
-        ArrayList<String> voiceResults;
-        try {
-            voiceResults = intent.getExtras().getStringArrayList(RecognizerIntent.EXTRA_RESULTS);
-        } catch (Exception e) {
-            voiceResults = new ArrayList<String>();
+        String action = intent.getAction();
+        if(action.equals(ACTION_START_KEY)){
+            cancelUpdate();
+            currencyPosition = intent.getIntExtra(CURRENCY_POSITION_KEY, 0);
+            BitcoinTicker.currency = Tools.getCurrencyList().get(currencyPosition);
         }
-        currency = "USD";
-        if(voiceResults != null && voiceResults.size() == 1 && voiceResults.get(0).length() == 3){
-            if(Tools.isOnList(voiceResults.get(0))){
-                currency = voiceResults.get(0);
-            }
-        }
-        cleanPrefs(currency);
+        cleanPrefs(BitcoinTicker.currency);
 
         if (mLiveCard == null) {
             mLiveCard = new LiveCard(this, TAG);
@@ -90,15 +86,14 @@ public class LiveCardService extends Service {
             mLiveCard.setAction(PendingIntent.getActivity(this, 0, menuIntent, 0));
             mLiveCard.publish(PublishMode.REVEAL);
         } else {
-            mLiveCard.navigate();
             if(remoteViews == null) {
                 remoteViews = new RemoteViews(getPackageName(), R.layout.live_card);
             }
         }
-        remoteViews.setTextViewText(R.id.cryptoName, "BTC - "+ currency);
+        remoteViews.setTextViewText(R.id.cryptoName, "BTC - "+ BitcoinTicker.currency);
         if(Tools.isNetworkAvailable(this)){
             remoteViews.setViewVisibility(R.id.noInternetConnection, View.INVISIBLE);
-            updateData(currency);
+            updateData(BitcoinTicker.currency);
         } else {
             remoteViews.setViewVisibility(R.id.noInternetConnection, View.VISIBLE);
         }
@@ -106,6 +101,11 @@ public class LiveCardService extends Service {
         if(!isAlarmUp){
             cancelUpdate();
             scheduleUpdate();
+        }
+        if(action.equals(ACTION_START_KEY)){
+            remoteViews.setViewVisibility(R.id.chartLayout, View.INVISIBLE);
+            chartVisible = false;
+            mLiveCard.navigate();
         }
         return START_STICKY;
     }
@@ -123,7 +123,7 @@ public class LiveCardService extends Service {
         Intent intent = new Intent(LiveCardService.this, LiveCardService.class);
         PendingIntent serviceIntent = PendingIntent.getService(LiveCardService.this, 0, intent, 0);
         AlarmManager alarm_manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        alarm_manager.setRepeating(AlarmManager.RTC, Calendar.getInstance().getTimeInMillis(), 30000,  serviceIntent);
+        alarm_manager.setRepeating(AlarmManager.RTC, Calendar.getInstance().getTimeInMillis(), 900000,  serviceIntent);//15 minutes
     }
 
     private void cancelUpdate(){
@@ -191,7 +191,7 @@ public class LiveCardService extends Service {
                     remoteViews.setTextViewText(R.id.bottomPrice, result.getLast() + "");
                     if(prevVal != 0) {
                         double percentRight = round((((result.getLast() - prevVal) / prevVal) * 100), 1);
-                        Log.d(TAG, "onPostExecute current: " + result.getLast() +", prev: " + prevVal + ", %: " + percentRight);
+                        Log.d(TAG, "onPostExecute, currency: " + BitcoinTicker.currency + " current: " + result.getLast() +", prev: " + prevVal + ", %: " + percentRight);
                         if(percentRight > 0 ){
                             remoteViews.setTextViewText(R.id.textUpdate, "(+" + percentRight + "%)");
                             remoteViews.setTextColor(R.id.textUpdate, Color.GREEN);
@@ -233,8 +233,9 @@ public class LiveCardService extends Service {
                         remoteViews.setTextColor(R.id.chartChange, Color.WHITE);
                         remoteViews.setTextViewText(R.id.chartChange, "");
                     }
+                    remoteViews.setTextViewText(R.id.timestamp,  new SimpleDateFormat("h:mm a z").format(Calendar.getInstance().getTime()) + "");
                     mLiveCard.setViews(remoteViews);
-                    new GetChartData().execute(currency);
+                    new GetChartData().execute(BitcoinTicker.currency);
                 }
             }
         }
@@ -277,9 +278,9 @@ public class LiveCardService extends Service {
         mRenderer.setPanEnabled(false, false);
         mRenderer.setYAxisMax(max);
         mRenderer.setYAxisMin(min);
-        mRenderer.setYTitle(currency + "");
+        mRenderer.setYTitle(BitcoinTicker.currency + "");
         mRenderer.setXTitle("Time");
-        mRenderer.addYTextLabel(max, ((int) Math.round(max)) + " " + currency);//TODO format
+        mRenderer.addYTextLabel(max, ((int) Math.round(max)) + " " + BitcoinTicker.currency);//TODO format
         mRenderer.setShowGrid(false);
         mRenderer.setXLabels(0);
         mRenderer.setYLabels(0);
@@ -318,7 +319,7 @@ public class LiveCardService extends Service {
 
     public class UpdateBinder extends Binder {
         public void updateValues() {
-            updateData(currency);
+            updateData(BitcoinTicker.currency);
         }
         public void showChart(){
             chartChangeVisibility();

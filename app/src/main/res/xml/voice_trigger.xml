@@ -1,4 +1,2 @@
 <!-- For more information about voice trigger, check out: https://developers.google.com/glass/develop/gdk/starting-glassware -->
-<trigger command="FIND_THE_EXCHANGE_RATE">
-    <input prompt="@string/additional_phase" />
-</trigger>
+<trigger command="FIND_THE_EXCHANGE_RATE"/>

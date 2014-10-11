@@ -14,14 +14,24 @@
         <service
             android:name="pl.tajchert.glass.bitcointicker.LiveCardService"
             android:icon="@drawable/ic_launcher_bitcoin"
-            android:label="@string/title_activity_live_card_service" >
+            android:label="@string/title_activity_live_card_service"
+            android:enabled="true"
+            android:exported="true" >
+        </service>
+
+        <activity
+            android:name="pl.tajchert.glass.bitcointicker.SetCurrencyActivity"
+            android:label="@string/app_name"
+            android:icon="@drawable/ic_launcher_bitcoin"
+            android:theme="@style/MenuTheme"
+            android:enabled="true" >
             <intent-filter>
                 <action android:name="com.google.android.glass.action.VOICE_TRIGGER" />
             </intent-filter>
             <meta-data
                 android:name="com.google.android.glass.VoiceTrigger"
                 android:resource="@xml/voice_trigger" />
-        </service>
+        </activity>
 
         <activity
             android:name="pl.tajchert.glass.bitcointicker.LiveCardMenuActivity"

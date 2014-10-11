@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black" >
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="-12px"
+        android:orientation="vertical" >
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/topCurr"
+            android:gravity="center"
+            android:text="USD"
+            android:fontFamily="sans-serif-thin"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="40sp"/>
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/midCurr"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:text="EUR"
+            android:fontFamily="sans-serif-thin"
+            android:textSize="60sp"/>
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bottCurr"
+            android:gravity="center"
+            android:text="AUD"
+            android:fontFamily="sans-serif-thin"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="40sp"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="40px"
+        android:textColor="@android:color/white"
+        android:text="@string/swipe_to_set_currency"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+</FrameLayout>
