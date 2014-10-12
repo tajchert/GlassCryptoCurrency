@@ -38,7 +38,7 @@
                 android:layout_marginTop="5dp"
                 android:fontFamily="sans-serif-thin"
                 android:gravity="left"
-                android:text="X"
+                android:text=""
                 android:textSize="60sp" />
 
             <TextView
@@ -64,6 +64,74 @@
                 android:gravity="right"
                 android:textSize="25sp" />
         </RelativeLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_margin="@dimen/card_margin"
+        android:id="@+id/chartLayout"
+        android:background="@android:color/background_dark"
+        android:visibility="invisible">
+
+        <TextView
+            android:id="@+id/chartChange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:fontFamily="sans-serif-thin"
+            android:text=""
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/chartTimeSpan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-thin"
+            android:text="24h"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/chart"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_below="@+id/chartTimeSpan" />
+        <TextView
+            android:id="@+id/chartMaxY"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-thin"
+            android:layout_marginBottom="-13dp"
+            android:layout_above="@+id/chart"
+            android:layout_marginLeft="17dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/chartTitleY"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-thin"
+            android:text="Rate"
+            android:layout_marginStart="-12dp"
+            android:gravity="center_vertical"
+            android:layout_alignTop="@+id/chart"
+            android:layout_alignBottom="@+id/chart"
+            android:rotation="90"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/chartTitleX"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-thin"
+            android:text="Time"
+            android:layout_centerHorizontal="true"
+            android:layout_alignBottom="@id/chart"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textStyle="bold" />
     </RelativeLayout>
 
     <LinearLayout
@@ -107,37 +175,6 @@
 
     </LinearLayout>
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_margin="@dimen/card_margin"
-        android:id="@+id/chartLayout"
-        android:background="@android:color/background_dark"
-        android:visibility="invisible">
-
-        <TextView
-            android:id="@+id/chartChange"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="3%"
-            android:textSize="30sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/chartTimeSpan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="24h"
-            android:textSize="30sp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/chart"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_below="@+id/chartTimeSpan" />
-    </RelativeLayout>
 
     <TextView
         android:id="@+id/noInternetConnection"

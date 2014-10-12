@@ -26,7 +26,6 @@
     </layouts>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="onPostExecute" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: pl.tajchert.glass.cryptocurrency" />
   </component>
   <component name="ChangeListManager">
@@ -52,11 +51,55 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="LiveCardService.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="LiveCardService.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/pl/tajchert/glass/bitcointicker/LiveCardService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.47619048" vertical-offset="240" max-vertical-offset="4245">
-              <caret line="67" column="29" selection-start-line="67" selection-start-column="15" selection-end-line="67" selection-end-column="29" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1615" max-vertical-offset="4800">
+              <caret line="112" column="7" selection-start-line="112" selection-start-column="7" selection-end-line="112" selection-end-column="7" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1817#1831#0" expanded="true" />
+                <element signature="e#1929#1930#0" expanded="true" />
+                <element signature="e#1959#1960#0" expanded="true" />
+                <element signature="e#5448#5449#0" expanded="true" />
+                <element signature="e#5500#5501#0" expanded="true" />
+                <element signature="e#12649#12650#0" expanded="true" />
+                <element signature="e#12707#12708#0" expanded="true" />
+                <element signature="e#12742#12743#0" expanded="true" />
+                <element signature="e#12789#12790#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="live_card.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/live_card.xml">
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-11.851851" vertical-offset="1405" max-vertical-offset="2940">
+              <caret line="115" column="48" selection-start-line="115" selection-start-column="48" selection-end-line="115" selection-end-column="48" />
+              <folding>
+                <element signature="e#447#478#0" expanded="true" />
+                <element signature="e#513#539#0" expanded="true" />
+                <element signature="e#575#601#0" expanded="true" />
+                <element signature="e#635#661#0" expanded="true" />
+                <element signature="e#2843#2863#0" expanded="true" />
+                <element signature="e#5714#5747#0" expanded="true" />
+                <element signature="e#5782#5808#0" expanded="true" />
+                <element signature="e#5844#5870#0" expanded="true" />
+                <element signature="e#6474#6500#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.gradle" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.41095892" vertical-offset="0" max-vertical-offset="730">
+              <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -77,12 +120,10 @@
       <file leaf-file-name="SetCurrencyActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/pl/tajchert/glass/bitcointicker/SetCurrencyActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.1153846" vertical-offset="2087" max-vertical-offset="2550">
-              <caret line="187" column="0" selection-start-line="187" selection-start-column="0" selection-end-line="187" selection-end-column="0" />
+            <state vertical-scroll-proportion="-22.5" vertical-offset="615" max-vertical-offset="2460">
+              <caret line="117" column="30" selection-start-line="117" selection-start-column="30" selection-end-line="117" selection-end-column="30" />
               <folding>
-                <element signature="e#2842#2898#0" expanded="true" />
-                <element signature="e#5023#5024#0" expanded="true" />
-                <element signature="e#5083#5084#0" expanded="true" />
+                <element signature="e#2687#2743#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -93,16 +134,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="810">
               <caret line="31" column="30" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build.gradle" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="630">
-              <caret line="29" column="1" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -924,7 +955,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="4237674873000" />
+        <entry key="$PROJECT_DIR$" value="4238116398000" />
       </map>
     </option>
   </component>
@@ -933,7 +964,6 @@
       <list>
         <option value="$PROJECT_DIR$/app/src/main/java/pl/tajchert/glass/cryptocurrency/api/ApiMainTicker.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/pl/tajchert/glass/cryptocurrency/api/Ticker.java" />
-        <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/pl/tajchert/glass/cryptocurrency/api/API.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/pl/tajchert/glass/cryptocurrency/LiveCardMenuActivity.java" />
         <option value="$PROJECT_DIR$/app/build/generated/source/r/debug/pl/tajchert/glass/cryptocurrency/R.java" />
@@ -944,13 +974,14 @@
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/live_card.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/pl/tajchert/glass/bitcointicker/LiveCardMenuActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/live_card.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/pl/tajchert/glass/bitcointicker/utils/Tools.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/set_card.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/pl/tajchert/glass/bitcointicker/SetCurrencyActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/pl/tajchert/glass/bitcointicker/BitcoinTicker.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/pl/tajchert/glass/bitcointicker/SetCurrencyActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/live_card.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/pl/tajchert/glass/bitcointicker/LiveCardService.java" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
       </list>
     </option>
   </component>
@@ -1210,36 +1241,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="drawable-hdpi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GlassCryptoCurrency" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GlassCryptoCurrency" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="java" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -1324,6 +1325,10 @@
     <property name="DEBUGGABLE_DEVICE" value="google-glass_1-015DB75A1301A012" />
     <property name="DEBUGGABLE_PROCESS" value="pl.tajchert.glass.cryptocurrency" />
     <property name="SHOW_ALL_PROCESSES" value="false" />
+    <property name="LayoutCode.rearrangeEntriesJava" value="false" />
+    <property name="ExportApk.ApkPath" value="$PROJECT_DIR$/app" />
+    <property name="ExportApk.Flavors" value="" />
+    <property name="ExportApk.BuildType" value="release" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -1331,11 +1336,11 @@
       <recent name="pl.tajchert.glass.cryptocurrency.api" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/main/res/drawable-hdpi" />
       <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable-hdpi" />
@@ -1528,7 +1533,7 @@
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298153" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3298153" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298153" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1564,26 +1569,10 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pl/tajchert/glass/bitcointicker/LiveCardService.java</url>
-          <line>70</line>
-          <properties />
-          <option name="timeStamp" value="47" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="48" />
+      <option name="time" value="51" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="495" max-vertical-offset="630">
-          <caret line="33" column="40" selection-start-line="33" selection-start-column="40" selection-end-line="33" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="450" max-vertical-offset="540">
@@ -1624,7 +1613,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1215" max-vertical-offset="4245">
           <caret line="81" column="47" selection-start-line="81" selection-start-column="47" selection-end-line="81" selection-end-column="47" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1817#1831#0" expanded="true" />
+            <element signature="e#1929#1930#0" expanded="true" />
+            <element signature="e#1959#1960#0" expanded="true" />
+            <element signature="e#5448#5449#0" expanded="true" />
+            <element signature="e#5500#5501#0" expanded="true" />
+            <element signature="e#12649#12650#0" expanded="true" />
+            <element signature="e#12707#12708#0" expanded="true" />
+            <element signature="e#12742#12743#0" expanded="true" />
+            <element signature="e#12789#12790#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1632,7 +1632,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1965" max-vertical-offset="2235">
           <caret line="131" column="45" selection-start-line="131" selection-start-column="25" selection-end-line="131" selection-end-column="45" />
-          <folding />
+          <folding>
+            <element signature="e#447#478#0" expanded="true" />
+            <element signature="e#513#539#0" expanded="true" />
+            <element signature="e#575#601#0" expanded="true" />
+            <element signature="e#635#661#0" expanded="true" />
+            <element signature="e#2843#2863#0" expanded="true" />
+            <element signature="e#5714#5747#0" expanded="true" />
+            <element signature="e#5782#5808#0" expanded="true" />
+            <element signature="e#5844#5870#0" expanded="true" />
+            <element signature="e#6474#6500#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1676,7 +1686,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4245">
           <caret line="81" column="47" selection-start-line="81" selection-start-column="47" selection-end-line="81" selection-end-column="47" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1817#1831#0" expanded="true" />
+            <element signature="e#1929#1930#0" expanded="true" />
+            <element signature="e#1959#1960#0" expanded="true" />
+            <element signature="e#5448#5449#0" expanded="true" />
+            <element signature="e#5500#5501#0" expanded="true" />
+            <element signature="e#12649#12650#0" expanded="true" />
+            <element signature="e#12707#12708#0" expanded="true" />
+            <element signature="e#12742#12743#0" expanded="true" />
+            <element signature="e#12789#12790#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1687,7 +1708,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1705" max-vertical-offset="2235">
           <caret line="131" column="45" selection-start-line="131" selection-start-column="25" selection-end-line="131" selection-end-column="45" />
-          <folding />
+          <folding>
+            <element signature="e#447#478#0" expanded="true" />
+            <element signature="e#513#539#0" expanded="true" />
+            <element signature="e#575#601#0" expanded="true" />
+            <element signature="e#635#661#0" expanded="true" />
+            <element signature="e#2843#2863#0" expanded="true" />
+            <element signature="e#5714#5747#0" expanded="true" />
+            <element signature="e#5782#5808#0" expanded="true" />
+            <element signature="e#5844#5870#0" expanded="true" />
+            <element signature="e#6474#6500#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1731,7 +1762,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1605">
           <caret line="82" column="38" selection-start-line="82" selection-start-column="38" selection-end-line="82" selection-end-column="38" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1817#1831#0" expanded="true" />
+            <element signature="e#1929#1930#0" expanded="true" />
+            <element signature="e#1959#1960#0" expanded="true" />
+            <element signature="e#5448#5449#0" expanded="true" />
+            <element signature="e#5500#5501#0" expanded="true" />
+            <element signature="e#12649#12650#0" expanded="true" />
+            <element signature="e#12707#12708#0" expanded="true" />
+            <element signature="e#12742#12743#0" expanded="true" />
+            <element signature="e#12789#12790#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1749,7 +1791,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1347" max-vertical-offset="1830">
           <caret line="110" column="38" selection-start-line="110" selection-start-column="38" selection-end-line="110" selection-end-column="38" />
-          <folding />
+          <folding>
+            <element signature="e#447#478#0" expanded="true" />
+            <element signature="e#513#539#0" expanded="true" />
+            <element signature="e#575#601#0" expanded="true" />
+            <element signature="e#635#661#0" expanded="true" />
+            <element signature="e#2843#2863#0" expanded="true" />
+            <element signature="e#5714#5747#0" expanded="true" />
+            <element signature="e#5782#5808#0" expanded="true" />
+            <element signature="e#5844#5870#0" expanded="true" />
+            <element signature="e#6474#6500#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1811,11 +1863,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/ic_stop.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/build/generated/source/r/debug/pl/tajchert/glass/bitcointicker/R.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.35164836" vertical-offset="35" max-vertical-offset="1110">
@@ -1831,22 +1878,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/ic_rate.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/arrow_down_colour.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/ic_launcher.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/ic_launcher_bitcoin.png">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
@@ -1883,14 +1915,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="630">
-          <caret line="29" column="1" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="75" max-vertical-offset="705">
@@ -1913,17 +1937,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/live_card.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15503876" vertical-offset="240" max-vertical-offset="2385">
-          <caret line="20" column="48" selection-start-line="20" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/pl/tajchert/glass/bitcointicker/LiveCardMenuActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.34375" vertical-offset="450" max-vertical-offset="1680">
@@ -1943,6 +1956,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/android-sdk/sources/android-19/android/app/Activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="35393" max-vertical-offset="79035">
+          <caret line="2500" column="0" selection-start-line="2500" selection-start-column="0" selection-end-line="2500" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/android-sdk/sources/android-19/android/app/ActivityThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.002342" vertical-offset="37598" max-vertical-offset="72855">
+          <caret line="2756" column="0" selection-start-line="2756" selection-start-column="0" selection-end-line="2756" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/pl/tajchert/glass/bitcointicker/utils/Tools.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="810">
@@ -1951,11 +1980,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/android-sdk/sources/android-19/android/app/Activity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/pl/tajchert/glass/bitcointicker/SetCurrencyActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="35393" max-vertical-offset="79035">
-          <caret line="2500" column="0" selection-start-line="2500" selection-start-column="0" selection-end-line="2500" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="-22.5" vertical-offset="615" max-vertical-offset="2460">
+          <caret line="117" column="30" selection-start-line="117" selection-start-column="30" selection-end-line="117" selection-end-column="30" />
+          <folding>
+            <element signature="e#2687#2743#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1969,30 +2000,75 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/pl/tajchert/glass/bitcointicker/SetCurrencyActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/live_card.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.1153846" vertical-offset="2087" max-vertical-offset="2550">
-          <caret line="187" column="0" selection-start-line="187" selection-start-column="0" selection-end-line="187" selection-end-column="0" />
+        <state vertical-scroll-proportion="-11.851851" vertical-offset="1405" max-vertical-offset="2940">
+          <caret line="115" column="48" selection-start-line="115" selection-start-column="48" selection-end-line="115" selection-end-column="48" />
           <folding>
-            <element signature="e#2842#2898#0" expanded="true" />
-            <element signature="e#5023#5024#0" expanded="true" />
-            <element signature="e#5083#5084#0" expanded="true" />
+            <element signature="e#447#478#0" expanded="true" />
+            <element signature="e#513#539#0" expanded="true" />
+            <element signature="e#575#601#0" expanded="true" />
+            <element signature="e#635#661#0" expanded="true" />
+            <element signature="e#2843#2863#0" expanded="true" />
+            <element signature="e#5714#5747#0" expanded="true" />
+            <element signature="e#5782#5808#0" expanded="true" />
+            <element signature="e#5844#5870#0" expanded="true" />
+            <element signature="e#6474#6500#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/android-sdk/sources/android-19/android/app/ActivityThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.002342" vertical-offset="37598" max-vertical-offset="72855">
-          <caret line="2756" column="0" selection-start-line="2756" selection-start-column="0" selection-end-line="2756" selection-end-column="0" />
-          <folding />
-        </state>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/ic_chart.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/ic_launcher.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/ic_launcher_bitcoin.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/ic_stop.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/ic_rate.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/pl/tajchert/glass/bitcointicker/LiveCardService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.47619048" vertical-offset="240" max-vertical-offset="4245">
-          <caret line="67" column="29" selection-start-line="67" selection-start-column="15" selection-end-line="67" selection-end-column="29" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1615" max-vertical-offset="4800">
+          <caret line="112" column="7" selection-start-line="112" selection-start-column="7" selection-end-line="112" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1817#1831#0" expanded="true" />
+            <element signature="e#1929#1930#0" expanded="true" />
+            <element signature="e#1959#1960#0" expanded="true" />
+            <element signature="e#5448#5449#0" expanded="true" />
+            <element signature="e#5500#5501#0" expanded="true" />
+            <element signature="e#12649#12650#0" expanded="true" />
+            <element signature="e#12707#12708#0" expanded="true" />
+            <element signature="e#12742#12743#0" expanded="true" />
+            <element signature="e#12789#12790#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.41095892" vertical-offset="0" max-vertical-offset="730">
+          <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
           <folding />
         </state>
       </provider>
