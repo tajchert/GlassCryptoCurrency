@@ -88,7 +88,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-thin"
-            android:text="24h"
+            android:visibility="invisible"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -127,7 +127,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-thin"
-            android:text="Time"
+            android:text="Time (24h)"
             android:layout_centerHorizontal="true"
             android:layout_alignBottom="@id/chart"
             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -171,6 +171,7 @@
             android:layout_width="30px"
             android:layout_height="30px"
             android:layout_alignParentEnd="true"
+            android:layout_marginBottom="3dp"
             android:src="@drawable/ic_launcher_bitcoin" />
 
     </LinearLayout>
